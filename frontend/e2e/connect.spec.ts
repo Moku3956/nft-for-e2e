@@ -30,7 +30,8 @@ test('MetaMask でウォレットを接続できる', async ({
   const notificationPage = await notificationPagePromise;
   await notificationPage.waitForLoadState('domcontentloaded');
   await notificationPage.getByTestId('confirm-btn').click();
-
+  // ここまでが、connectToDapp()の代わり
+  
   const button = page.getByRole('button', { name: /0x/ });
   await expect(button).toBeVisible();
 });
