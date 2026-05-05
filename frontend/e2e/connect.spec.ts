@@ -18,6 +18,12 @@ test('MetaMask でウォレットを接続できる', async ({
     extensionId
   );
 
+  // onboarding 完了画面が残っている場合は閉じる
+  const done = metamaskPage.getByTestId('onboarding-complete-done');
+  if (await done.isVisible({ timeout: 3000 }).catch(() => false)) {
+    await done.click();
+  }
+
   await page.goto('/');
 
   await page.getByRole('button', { name: 'ウォレットを接続' }).click();
